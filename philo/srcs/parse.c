@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 14:51:45 by hleung            #+#    #+#             */
-/*   Updated: 2023/08/29 11:10:45 by hleung           ###   ########.fr       */
+/*   Updated: 2023/08/29 15:18:50 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ int	ft_isdigit(int c);
 int	check_format(char *str);
 int	ft_atoi(char *str);
 
-int	parse(char **argv, t_data *data)
+int	parse(int argc, char **argv, t_data *data)
 {
 	int	i;
 
 	i = 1;
-	while (i <= 4)
+	while (i < argc)
 	{
 		if (check_format(argv[i]) == -1)
 			return (-1);
-		data->parsed_times[i - 1] = ft_atoi(argv[i]);
-		if (data->parsed_times[i - 1] == -1)
+		data->parsed_args[i - 1] = ft_atoi(argv[i]);
+		if (data->parsed_args[i - 1] == -1)
 			return (ft_putstr(LIM), -1);
 		i++;
 	}
