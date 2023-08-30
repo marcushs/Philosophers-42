@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+         #
+#    By: hleung <hleung@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 17:22:01 by hleung            #+#    #+#              #
-#    Updated: 2023/08/29 15:38:02 by hleung           ###   ########.fr        #
+#    Updated: 2023/08/30 15:25:51 by hleung           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS			=	-Wall -Wextra -Werror -pthread
 RM				=	rm -rf
 HEADER			=	includes
 DIR_SRCS		=	./srcs/
-LIST_SRCS		=	philo.c print.c parse.c init.c free.c
+LIST_SRCS		=	philo.c print.c parse.c init.c free.c time.c threads.c
 SRCS			=	${addprefix ${DIR_SRCS}, ${LIST_SRCS}}
 DIR_OBJS		=	.objs/
 LIST_OBJS		=	${LIST_SRCS:.c=.o}

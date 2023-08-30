@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 14:51:45 by hleung            #+#    #+#             */
-/*   Updated: 2023/08/29 15:18:50 by hleung           ###   ########.fr       */
+/*   Updated: 2023/08/30 12:23:01 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,24 @@ int	ft_atoi(char *str);
 int	parse(int argc, char **argv, t_data *data)
 {
 	int	i;
+	int	arr[5];
 
 	i = 1;
 	while (i < argc)
 	{
 		if (check_format(argv[i]) == -1)
 			return (-1);
-		data->parsed_args[i - 1] = ft_atoi(argv[i]);
-		if (data->parsed_args[i - 1] == -1)
+		arr[i - 1] = ft_atoi(argv[i]);
+		if (arr[i - 1] == -1)
 			return (ft_putstr(LIM), -1);
 		i++;
 	}
+	data->nb_philo = arr[0];
+	data->time_to_die = arr[1];
+	data->time_to_eat = arr[2];
+	data->time_to_sleep = arr[3];
+	if (argc == 6)
+		data->nb_eat = arr[4];
 	return (0);
 }
 
