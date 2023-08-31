@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:34:58 by hleung            #+#    #+#             */
-/*   Updated: 2023/08/30 16:05:43 by hleung           ###   ########.fr       */
+/*   Updated: 2023/08/31 11:59:08 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	create_threads(t_data *data)
 	pthread_mutex_lock(&data->start);
 	while (i < data->nb_philo)
 	{
-		if (pthread_create(data->threads + i, NULL, &routine, (void *)data->philos + i) != 0)
+		if (pthread_create(data->threads + i, NULL, &routine, &data->philos[i]) != 0)
 			return (ft_putstr(ERR_THR), -1);
 		printf("Created thread[%d]\n", i);
 		i++;
@@ -57,8 +57,6 @@ void	*routine(void *philos)
 	philo = philos;
 	pthread_mutex_lock(&philo->data->start);
 	//simulation(data);
-	// printf("Print from philo id: %d\n", id);
-	printf("hi\n");
 	pthread_mutex_unlock(&philo->data->start);
 	return (NULL);
 }

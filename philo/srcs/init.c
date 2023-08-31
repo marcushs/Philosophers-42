@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:53:24 by hleung            #+#    #+#             */
-/*   Updated: 2023/08/30 16:06:19 by hleung           ###   ########.fr       */
+/*   Updated: 2023/08/31 11:23:38 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	philo_init(t_data *data)
 	while (i < data->nb_philo)
 	{
 		data->philos[i].id = i + 1;
-		//data->philos[i].data = data;
+		data->philos[i].data = data;
 		i++;
 	}
 }
