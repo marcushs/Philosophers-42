@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.c                                             :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 14:53:20 by hleung            #+#    #+#             */
-/*   Updated: 2023/08/31 14:28:46 by hleung           ###   ########.fr       */
+/*   Created: 2023/08/31 13:05:36 by hleung            #+#    #+#             */
+/*   Updated: 2023/08/31 13:06:38 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-suseconds_t	get_time(void)
+static int	ft_strlen(char *str)
 {
-	struct timeval tv;
+	int	i;
 
-	if (gettimeofday(&tv, NULL) == -1)
-		return (ft_putstr(GET_TIME), -1);
-	return (tv.tv_sec * (suseconds_t)1000 + tv.tv_usec * 0.001);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+void	ft_putstr(char *str)
+{
+	write(1, str, ft_strlen(str));
 }

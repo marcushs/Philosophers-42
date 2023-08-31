@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:26:12 by hleung            #+#    #+#             */
-/*   Updated: 2023/08/30 15:26:49 by hleung           ###   ########.fr       */
+/*   Updated: 2023/08/31 15:23:14 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct s_philo
 {
 	int				id;
 	suseconds_t		last_eat;
+	int				l_fork;
+	int				r_fork;
 	struct s_data	*data;
 }	t_philo;
 
@@ -45,6 +47,7 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				nb_eat;
+	int				is_dead;
 	suseconds_t		time_of_start;
 	t_philo			*philos;
 	pthread_t		*threads;
@@ -60,4 +63,9 @@ int			data_init(int argc, char **argv, t_data *data);
 suseconds_t	get_time(void);
 void		philo_init(t_data *data);
 void		free_data(t_data *data);
+int			data_init(int argc, char **argv, t_data *data);
+int			create_threads(t_data *data);
+int			join_threads(t_data *data);
+void		*routine();
+int			take_fork(t_philo *philo);
 #endif
