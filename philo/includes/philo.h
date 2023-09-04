@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:26:12 by hleung            #+#    #+#             */
-/*   Updated: 2023/08/31 15:23:14 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/04 20:14:31 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,20 @@
 # include <sys/time.h>
 # include <limits.h>
 
+typedef struct s_fork
+{
+	pthread_mutex_t	fork;
+	int				is_locked;
+}	t_fork;
+
 typedef struct s_philo
 {
 	int				id;
 	suseconds_t		last_eat;
-	int				l_fork;
-	int				r_fork;
+	int				eat_count;
+	t_fork		*l_fork;
+	t_fork		*r_fork;
+	pthread_mutex_t eat_lock;
 	struct s_data	*data;
 }	t_philo;
 
@@ -50,15 +58,16 @@ typedef struct s_data
 	int				is_dead;
 	suseconds_t		time_of_start;
 	t_philo			*philos;
+	t_fork			*forks;
 	pthread_t		*threads;
 	pthread_mutex_t	start;
+	pthread_mutex_t	print;
 	pthread_mutex_t	died;
-	pthread_mutex_t	*forks;
 }	t_data;
 
 void		ft_putstr(char *str);
-void		print_log(int timestamp, int philo, char *action);
 int			parse(int argc, char **argv, t_data *data);
+void		print_log(t_philo *philo, char *msg);
 int			data_init(int argc, char **argv, t_data *data);
 suseconds_t	get_time(void);
 void		philo_init(t_data *data);
@@ -67,5 +76,7 @@ int			data_init(int argc, char **argv, t_data *data);
 int			create_threads(t_data *data);
 int			join_threads(t_data *data);
 void		*routine();
-int			take_fork(t_philo *philo);
+void		take_fork(t_philo *philo);
+void		eat(t_philo *philo);
+void		ft_usleep(int ms);
 #endif
