@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:34:58 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/04 21:15:11 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/04 21:44:58 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	simulation(t_philo *philo)
 	if (philo->id % 2 == 0)
 	{
 		print_log(philo, THINK);
-		ft_usleep(50);
+		ft_usleep(200);
 	}
 	else if (philo->id == philo->data->nb_philo && philo->data->nb_philo % 2 == 1)
 	{
@@ -81,6 +81,7 @@ int	simulation(t_philo *philo)
 		ft_usleep(200);
 	}
 	take_fork(philo);
+	eat(philo);
 	// printf("Thread[%d] has left fork %p\n", philo->id, philo->l_fork);
 	// printf("Thread[%d] has right fork %p\n", philo->id, philo->r_fork);
 	return (0);
