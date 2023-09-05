@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:30:23 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/04 17:07:13 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/05 10:50:28 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ void	free_data(t_data *data)
 		free_and_null((void *)&data->forks);
 	pthread_mutex_destroy(&data->start);
 	pthread_mutex_destroy(&data->print);
-	//pthread_mutex_destroy(&data->died);
+	pthread_mutex_destroy(&data->died);
 }
 

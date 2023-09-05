@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 14:51:45 by hleung            #+#    #+#             */
-/*   Updated: 2023/08/30 12:23:01 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/05 09:26:21 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	parse(int argc, char **argv, t_data *data)
 	data->time_to_sleep = arr[3];
 	if (argc == 6)
 		data->nb_eat = arr[4];
+	else
+		data->nb_eat = -1;
 	return (0);
 }
 

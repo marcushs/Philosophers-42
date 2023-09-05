@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:26:12 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/04 20:14:31 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/05 12:40:44 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ typedef struct s_philo
 	int				id;
 	suseconds_t		last_eat;
 	int				eat_count;
-	t_fork		*l_fork;
-	t_fork		*r_fork;
+	t_fork			*l_fork;
+	t_fork			*r_fork;
 	pthread_mutex_t eat_lock;
 	struct s_data	*data;
 }	t_philo;
@@ -55,7 +55,7 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				nb_eat;
-	int				is_dead;
+	int				death;
 	suseconds_t		time_of_start;
 	t_philo			*philos;
 	t_fork			*forks;
@@ -76,7 +76,11 @@ int			data_init(int argc, char **argv, t_data *data);
 int			create_threads(t_data *data);
 int			join_threads(t_data *data);
 void		*routine();
-void		take_fork(t_philo *philo);
-void		eat(t_philo *philo);
-void		ft_usleep(int ms);
+int			take_fork(t_philo *philo);
+int			philo_eat(t_philo *philo);
+int			ft_usleep(t_philo *philo, int ms);
+int			philo_sleep(t_philo *philo);
+int			philo_think(t_philo *philo);
+int			check_death(t_philo *philo);
+int			check_time_to_die(t_philo *philo);
 #endif

@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:25:59 by hleung            #+#    #+#             */
-/*   Updated: 2023/08/31 13:04:44 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/05 09:37:23 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	main(int argc, char **argv)
 		return (free_data(&data), 1);
 	if (join_threads(&data) == -1)
 		return (free_data(&data), 1);
-	//philo(argv);
 	free_data(&data);
 	return (0);
 }

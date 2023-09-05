@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+         #
+#    By: hleung <hleung@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 17:22:01 by hleung            #+#    #+#              #
-#    Updated: 2023/09/04 20:13:20 by hleung           ###   ########.fr        #
+#    Updated: 2023/09/05 12:43:41 by hleung           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	philo
 CC				=	gcc
-CFLAGS			=	-Wall -Wextra -Werror -pthread -fsanitize=thread
+CFLAGS			=	-Wall -Wextra -Werror -pthread #-fsanitize=thread
 RM				=	rm -rf
 HEADER			=	includes
 DIR_SRCS		=	./srcs/

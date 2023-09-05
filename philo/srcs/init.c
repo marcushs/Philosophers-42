@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:53:24 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/04 20:15:02 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/05 10:54:26 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	data_init(int argc, char **argv, t_data *data)
 	data->philos = NULL;
 	if (parse(argc, argv, data) == -1)
 		return (-1);
-	data->is_dead = 0;
+	data->death = 0;
 	data->philos = malloc(data->nb_philo * sizeof(t_philo));
 	if (!data->philos)
 		return (ft_putstr(MALLOC), -1);
@@ -33,11 +33,11 @@ int	data_init(int argc, char **argv, t_data *data)
 	while (++i < data->nb_philo)
 	{
 		pthread_mutex_init(&data->forks[i].fork, NULL);
-		//printf("data->forks[%d].fork has address %p\n", i, &data->forks[i].fork);
 		data->forks[i].is_locked = 0;
 	}
 	pthread_mutex_init(&data->start, NULL);
 	pthread_mutex_init(&data->print, NULL);
+	pthread_mutex_init(&data->died, NULL);
 	return (0);
 }
 
@@ -49,7 +49,7 @@ void	philo_init(t_data *data)
 	while (i < data->nb_philo)
 	{
 		data->philos[i].id = i + 1;
-		data->philos[i].last_eat = 0;
+		data->philos[i].last_eat = data->time_of_start;
 		data->philos[i].eat_count = 0;
 		if (i == data->nb_philo - 1)
 		{
