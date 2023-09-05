@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:06:38 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/05 12:53:50 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/05 14:54:24 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		fork_ready(t_fork *fork);
 
-int	take_fork(t_philo *philo)
+inline int	take_fork(t_philo *philo)
 {
 	if (check_death(philo))
 		return (-1);
@@ -45,7 +45,7 @@ int	take_fork(t_philo *philo)
 	return (1);
 }
 
-int	fork_ready(t_fork *fork)
+inline int	fork_ready(t_fork *fork)
 {
 	pthread_mutex_lock(&fork->fork);
 	if (fork->is_locked)
@@ -57,17 +57,22 @@ int	fork_ready(t_fork *fork)
 	return (1);
 }
 
-int	philo_eat(t_philo *philo)
+inline int	philo_eat(t_philo *philo)
 {
 	if (check_death(philo))
 		return (-1);
+	if (philo->eat_count != 0)
+		if (check_time_to_die(philo))
+			return (-1);
+	philo->last_eat = get_time();
 	if (check_time_to_die(philo))
+		return (-1);
+	if (check_death(philo))
 		return (-1);
 	print_log(philo, FORK);
 	print_log(philo, FORK);
 	print_log(philo, EAT);
-	philo->last_eat = get_time();
-	if (ft_usleep(philo, philo->data->time_to_eat) == -1)
+	if (ft_usleep(philo, philo->last_eat + philo->data->time_to_eat) == -1)
 		return (-1);
 	pthread_mutex_lock(&philo->l_fork->fork);
 	philo->l_fork->is_locked = 0;
@@ -78,7 +83,7 @@ int	philo_eat(t_philo *philo)
 	return (1);
 }
 
-int	philo_sleep(t_philo *philo)
+inline int	philo_sleep(t_philo *philo)
 {
 	if (check_death(philo))
 		return (-1);
@@ -90,7 +95,7 @@ int	philo_sleep(t_philo *philo)
 	return (1);
 }
 
-int	philo_think(t_philo *philo)
+inline int	philo_think(t_philo *philo)
 {
 	if (check_death(philo))
 		return (-1);
@@ -100,7 +105,7 @@ int	philo_think(t_philo *philo)
 	return (1);
 }
 
-int	check_death(t_philo *philo)
+inline int	check_death(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->died);
 	if (philo->data->death == 1)
@@ -112,7 +117,7 @@ int	check_death(t_philo *philo)
 	return (0);
 }
 
-int	check_time_to_die(t_philo *philo)
+inline int	check_time_to_die(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->died);
 	if (get_time() - philo->last_eat >= philo->data->time_to_die && philo->data->death == 0)

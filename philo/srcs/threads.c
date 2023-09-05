@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:34:58 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/05 12:58:25 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/05 14:06:02 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	*routine(void *philos)
 
 int	simulation(t_philo *philo)
 {
+	philo->data->time_of_start = get_time();
 	if (philo->id % 2 == 0)
 	{
 		print_log(philo, THINK);
@@ -70,7 +71,7 @@ int	simulation(t_philo *philo)
 	else if (philo->id == philo->data->nb_philo && philo->data->nb_philo % 2 == 1)
 	{
 		print_log(philo, THINK);
-		usleep(50000);
+		usleep(1500);
 	}
 	while (philo->eat_count != philo->data->nb_eat)
 	{
@@ -78,7 +79,11 @@ int	simulation(t_philo *philo)
 			return (-1);
 		if (philo_eat(philo) == -1)
 			return (-1);
+		if (check_death(philo))
+			return (-1);
 		if (philo_sleep(philo) == -1)
+			return (-1);
+		if (check_death(philo))
 			return (-1);
 		if (philo_think(philo) == -1)
 			return (-1);

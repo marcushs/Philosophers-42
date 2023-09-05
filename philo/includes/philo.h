@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:26:12 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/05 12:40:44 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/05 14:46:03 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_fork
 typedef struct s_philo
 {
 	int				id;
-	suseconds_t		last_eat;
+	long			last_eat;
 	int				eat_count;
 	t_fork			*l_fork;
 	t_fork			*r_fork;
