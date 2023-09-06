@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:53:24 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/05 10:54:26 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/05 22:13:27 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	philo_init(t_data *data)
 	while (i < data->nb_philo)
 	{
 		data->philos[i].id = i + 1;
-		data->philos[i].last_eat = data->time_of_start;
 		data->philos[i].eat_count = 0;
 		if (i == data->nb_philo - 1)
 		{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 15:06:38 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/05 14:54:24 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/05 22:54:43 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,21 @@ inline int	philo_eat(t_philo *philo)
 {
 	if (check_death(philo))
 		return (-1);
-	if (philo->eat_count != 0)
-		if (check_time_to_die(philo))
-			return (-1);
+	// if (philo->eat_count != 0)
+	// 	if (check_time_to_die(philo))
+	// 		return (-1);
 	philo->last_eat = get_time();
 	if (check_time_to_die(philo))
 		return (-1);
 	if (check_death(philo))
 		return (-1);
-	print_log(philo, FORK);
-	print_log(philo, FORK);
-	print_log(philo, EAT);
-	if (ft_usleep(philo, philo->last_eat + philo->data->time_to_eat) == -1)
+	if (print_log(philo, FORK) == -1)
+		return (-1);
+	if (print_log(philo, FORK) == -1)
+		return (-1);
+	if (print_log(philo, EAT) == -1)
+		return (-1);
+	if (ft_usleep(philo, philo->data->time_to_eat) == -1)
 		return (-1);
 	pthread_mutex_lock(&philo->l_fork->fork);
 	philo->l_fork->is_locked = 0;
@@ -89,7 +92,8 @@ inline int	philo_sleep(t_philo *philo)
 		return (-1);
 	if (check_time_to_die(philo))
 		return (-1);
-	print_log(philo, SLEEP);
+	if (print_log(philo, SLEEP) == -1)
+		return (-1);
 	if (ft_usleep(philo, philo->data->time_to_sleep) == -1)
 		return (-1);
 	return (1);
@@ -101,7 +105,8 @@ inline int	philo_think(t_philo *philo)
 		return (-1);
 	if (check_time_to_die(philo))
 		return (-1);
-	print_log(philo, THINK);
+	if (print_log(philo, THINK) == -1)
+		return (-1);
 	return (1);
 }
 
@@ -122,7 +127,7 @@ inline int	check_time_to_die(t_philo *philo)
 	pthread_mutex_lock(&philo->data->died);
 	if (get_time() - philo->last_eat >= philo->data->time_to_die && philo->data->death == 0)
 	{
-		print_log(philo, DIE);
+		printf("%ld %d %s", get_time() - philo->data->time_of_start, philo->id, DIE);
 		philo->data->death = 1;
 		pthread_mutex_unlock(&philo->data->died);
 		return (1);

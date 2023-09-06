@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:34:58 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/05 14:06:02 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/05 22:21:03 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,17 @@ void	*routine(void *philos)
 int	simulation(t_philo *philo)
 {
 	philo->data->time_of_start = get_time();
+	philo->last_eat = philo->data->time_of_start;
 	if (philo->id % 2 == 0)
 	{
-		print_log(philo, THINK);
+		if (print_log(philo, THINK) == -1)
+			return (-1);
 		usleep(50000);
 	}
 	else if (philo->id == philo->data->nb_philo && philo->data->nb_philo % 2 == 1)
 	{
-		print_log(philo, THINK);
+		if (print_log(philo, THINK) == -1)
+			return (-1);
 		usleep(1500);
 	}
 	while (philo->eat_count != philo->data->nb_eat)
