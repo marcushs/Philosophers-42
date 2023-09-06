@@ -6,17 +6,17 @@
 #    By: hleung <hleung@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 17:22:01 by hleung            #+#    #+#              #
-#    Updated: 2023/09/05 12:43:41 by hleung           ###   ########.fr        #
+#    Updated: 2023/09/06 10:28:11 by hleung           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	philo
 CC				=	gcc
-CFLAGS			=	-Wall -Wextra -Werror -pthread #-fsanitize=thread
+CFLAGS			=	-Wall -Wextra -Werror -pthread
 RM				=	rm -rf
 HEADER			=	includes
 DIR_SRCS		=	./srcs/
-LIST_SRCS		=	philo.c ft_putstr.c parse.c init.c free.c time.c threads.c actions.c print.c
+LIST_SRCS		=	philo.c ft_putstr.c parse.c init.c free.c time.c threads.c actions.c print.c eat.c
 SRCS			=	${addprefix ${DIR_SRCS}, ${LIST_SRCS}}
 DIR_OBJS		=	.objs/
 LIST_OBJS		=	${LIST_SRCS:.c=.o}

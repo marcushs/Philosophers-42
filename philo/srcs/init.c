@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:53:24 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/05 22:13:27 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/06 10:19:40 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+static int	data_mutex_init(t_data *data);
 
 int	data_init(int argc, char **argv, t_data *data)
 {
@@ -32,12 +34,23 @@ int	data_init(int argc, char **argv, t_data *data)
 	i = -1;
 	while (++i < data->nb_philo)
 	{
-		pthread_mutex_init(&data->forks[i].fork, NULL);
+		if (pthread_mutex_init(&data->forks[i].fork, NULL) != 0)
+			return (free_data(data), ft_putstr(MUT_INIT), -1);
 		data->forks[i].is_locked = 0;
 	}
-	pthread_mutex_init(&data->start, NULL);
-	pthread_mutex_init(&data->print, NULL);
-	pthread_mutex_init(&data->died, NULL);
+	if (data_mutex_init(data) == -1)
+		return (free_data(data), ft_putstr(MUT_INIT), -1);
+	return (0);
+}
+
+static int	data_mutex_init(t_data *data)
+{
+	if (pthread_mutex_init(&data->start, NULL) != 0)
+		return (-1);
+	if (pthread_mutex_init(&data->print, NULL) != 0)
+		return (-1);
+	if (pthread_mutex_init(&data->died, NULL) != 0)
+		return (-1);
 	return (0);
 }
 
@@ -60,9 +73,9 @@ void	philo_init(t_data *data)
 			data->philos[i].l_fork = &data->forks[i + 1];
 			data->philos[i].r_fork = &data->forks[i];
 		}
-		pthread_mutex_init(&data->philos[i].eat_lock, NULL);
+		if (pthread_mutex_init(&data->philos[i].eat_lock, NULL) != 0)
+			return (free_data(data), ft_putstr(MUT_INIT));
 		data->philos[i].data = data;
 		i++;
 	}
 }
-

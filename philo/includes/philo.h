@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:26:12 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/05 22:20:33 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/06 10:08:28 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define INV_FORM "Invalid argument format!\n"
 # define LIM "Argument outside of integer range!\n"
 # define MALLOC "Error occurred during malloc!\n"
+# define MUT_INIT "Error occurred initializing mutex!\n"
 # define ERR_THR "Error creating threads!\n"
 # define ERR_JOIN "Error joining threads!\n"
 # define GET_TIME "Error occurred gettimeofday!\n"
@@ -44,7 +45,7 @@ typedef struct s_philo
 	int				eat_count;
 	t_fork			*l_fork;
 	t_fork			*r_fork;
-	pthread_mutex_t eat_lock;
+	pthread_mutex_t	eat_lock;
 	struct s_data	*data;
 }	t_philo;
 
@@ -75,7 +76,6 @@ void		free_data(t_data *data);
 int			data_init(int argc, char **argv, t_data *data);
 int			create_threads(t_data *data);
 int			join_threads(t_data *data);
-void		*routine();
 int			take_fork(t_philo *philo);
 int			philo_eat(t_philo *philo);
 int			ft_usleep(t_philo *philo, long ms);
