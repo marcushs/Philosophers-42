@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:26:12 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/06 10:08:28 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/06 19:08:36 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,10 @@ typedef struct s_data
 void		ft_putstr(char *str);
 int			parse(int argc, char **argv, t_data *data);
 int			print_log(t_philo *philo, char *msg);
-int			data_init(int argc, char **argv, t_data *data);
 suseconds_t	get_time(void);
 void		philo_init(t_data *data);
 void		free_data(t_data *data);
-int			data_init(int argc, char **argv, t_data *data);
+int			data_init(t_data *data);
 int			create_threads(t_data *data);
 int			join_threads(t_data *data);
 int			take_fork(t_philo *philo);

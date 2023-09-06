@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:53:24 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/06 14:17:47 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/06 19:08:16 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static int	data_mutex_init(t_data *data);
 
-int	data_init(int argc, char **argv, t_data *data)
+int	data_init(t_data *data)
 {
 	int	i;
 
 	data->philos = NULL;
-	if (parse(argc, argv, data) == -1)
-		return (-1);
+	data->threads = NULL;
+	data->forks = NULL;
 	data->death = 0;
 	data->philos = malloc(data->nb_philo * sizeof(t_philo));
 	if (!data->philos)
