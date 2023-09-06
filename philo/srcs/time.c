@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:53:20 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/06 09:53:48 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/06 11:53:58 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ inline int	check_time_to_die(t_philo *philo)
 	if (get_time() - philo->last_eat >= philo->data->time_to_die && \
 	philo->data->death == 0)
 	{
-		usleep(3000);
 		philo->data->death = 1;
+		usleep(6000);
 		printf("%ld %d %s", get_time() - philo->data->time_of_start, \
 		philo->id, DIE);
 		pthread_mutex_unlock(&philo->data->died);

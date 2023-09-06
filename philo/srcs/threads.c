@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 14:34:58 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/06 10:26:19 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/06 11:27:42 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,13 @@ int	simulation(t_philo *philo)
 			return (-1);
 		if (check_death(philo))
 			return (-1);
+		if (check_time_to_die(philo))
+			return (-1);
 		if (philo_sleep(philo) == -1)
 			return (-1);
 		if (check_death(philo))
+			return (-1);
+		if (check_time_to_die(philo))
 			return (-1);
 		if (philo_think(philo) == -1)
 			return (-1);

@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 09:54:36 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/06 09:59:14 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/06 11:20:22 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ inline int	philo_eat(t_philo *philo)
 		if (check_time_to_die(philo))
 			return (-1);
 	philo->last_eat = get_time();
-	if (check_time_to_die(philo))
-		return (-1);
 	if (check_death(philo))
+		return (-1);
+	if (check_time_to_die(philo))
 		return (-1);
 	if (print_log(philo, FORK) == -1)
 		return (-1);
