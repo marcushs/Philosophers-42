@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 15:30:23 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/06 09:42:40 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/06 14:20:42 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	free_data(t_data *data)
 {
 	int	i;
 
+	if (data->philos == NULL)
+		return ;
 	i = 0;
 	while (i < data->nb_philo)
 	{
