@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hleung <hleung@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 17:26:12 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/06 19:08:36 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/18 14:48:36 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PHILO_H
 # define ARG_NUM "Wrong number of arguments!\n"
 # define INV_FORM "Invalid argument format!\n"
-# define LIM "Argument outside of integer range!\n"
+# define LIM "Argument not in range!\n"
 # define MALLOC "Error occurred during malloc!\n"
 # define MUT_INIT "Error occurred initializing mutex!\n"
 # define ERR_THR "Error creating threads!\n"

@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 14:51:45 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/06 14:18:08 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/18 14:49:00 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	ft_atoi(char *str)
 		res = res * 10 + str[i] - '0';
 		i++;
 	}
-	if (res > INT_MAX)
+	if (res > INT_MAX || res == 0)
 		return (-1);
 	return ((int)res);
 }

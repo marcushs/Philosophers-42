@@ -6,7 +6,7 @@
 /*   By: hleung <hleung@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:53:20 by hleung            #+#    #+#             */
-/*   Updated: 2023/09/06 11:53:58 by hleung           ###   ########.fr       */
+/*   Updated: 2023/09/18 10:35:47 by hleung           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_usleep(t_philo *philo, long ms)
 	while (get_time() - time < ms)
 	{
 		if (check_time_to_die(philo))
-			return (-1); 
+			return (-1);
 		if (check_death(philo))
 			return (-1);
 		usleep(300);
